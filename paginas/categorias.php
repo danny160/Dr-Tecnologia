@@ -109,8 +109,20 @@
 
         <!-- Contenedor principal -->
         <div class="content">
-            
+            <!-- Div superior ocupando el 20% del contenedor -->
+            <div class="top-div">
+                <div class="top-content">
+                    <a href="inventario.php" class="btn-retroceder"><</a>
+                    <h1 class="title">CATEGORÍAS</h1>
+                    <a href="#" class="edit-link">Editar</a>
+                </div>
+            </div>
+            <!-- Div inferior ocupando el 80% del contenedor -->
+            <div class="bottom-div">
+
+            </div>
         </div>
+
 
     </div>
 

@@ -98,14 +98,68 @@ body {
 /* Estilo del div de contenido */
 .content {
     background-color: #1B263A;
-    position: absolute; /* Cambiar a posición absoluta */
-    top: 94px; /* Desde el borde de la barra superior */
-    left: 14vw; /* Desde el borde de la barra lateral, usa vw para ser responsive */
-    right: 30px; /* Límite derecho */
-    bottom: 14px; /* Límite inferior */
-    padding: 20px; /* Espaciado interno */
-    overflow: auto; /* Permitir desplazamiento si el contenido excede el tamaño */
+    position: absolute;
+    top: 94px;
+    left: 14vw;
+    right: 30px;
+    bottom: 14px;
+    padding: 20px;
+    overflow: auto;
     display: flex;
-    flex-direction: column; /* Para que los divs se apilen verticalmente */
-    margin-left: 20px; /* Margen izquierdo para mantener el espacio */
+    flex-direction: column;
+    margin-left: 20px;
 }
+
+.bottom-div {
+    flex-grow: 1; /* Ocupa el resto del espacio */
+    flex-basis: 80%; /* Toma el 80% del tamaño del contenedor */
+    background-color: #34495E; /* Color de ejemplo */
+}
+
+.top-div {
+    flex-grow: 0;
+    flex-basis: 10%;
+    background-color: #E0E0E0; /* Color de fondo similar al de la imagen */
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.top-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.btn-retroceder {
+    background-color: #1B263A; /* Color de fondo del botón circular */
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #1B263A; /* Color del texto */
+    margin: 0;
+    text-shadow: 1px 1px 2px #5A6A83, -1px -1px 2px #5A6A83; /* Sombra para el efecto de borde */
+    letter-spacing: 2px; /* Espaciado entre letras para mejorar el estilo */
+    text-transform: uppercase; /* Convertir el texto a mayúsculas */
+}
+
+
+.edit-link {
+    color: #1B263A; /* Color del texto "Editar" */
+    font-size: 16px;
+    text-decoration: none;
+}
+
