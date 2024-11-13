@@ -164,34 +164,40 @@ body {
 }
 
 /* para las categorias */
-
-#categorias-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columnas */
-    gap: 6px; /* Espacio entre los elementos */
+/* Contenedor general de las categorías */
+.categorias-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center; /* Centrar las categorías */
+    margin: 20px;
 }
 
-.categoria-card {
-    background-color: #E0E0E0;
-    border-radius: 10px;
-    text-align: center;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.categoria-img {
+/* Estilo para cada fila de categorías */
+.categorias-fila {
+    display: flex;
+    justify-content: space-around; /* Alinear las categorías en fila */
     width: 100%;
-    padding-top: 100%; /* Relación de aspecto 1:1 */
-    background-size: cover;
-    background-position: center;
+}
+
+/* Estilo para cada categoría */
+.categoria {
+    text-align: center;
+    width: 200px; /* Ajustar el tamaño del contenedor de cada categoría */
+}
+
+/* Estilo de la imagen circular */
+.categoria-imagen {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
+    object-fit: cover; /* Asegura que la imagen se ajuste dentro del círculo */
     margin-bottom: 10px;
 }
 
-.categoria-card h3 {
+/* Estilo del nombre de la categoría */
+.categoria-nombre {
     font-size: 16px;
     font-weight: bold;
-    color: #1B263A;
+    color: #ffffff;
 }
-
-

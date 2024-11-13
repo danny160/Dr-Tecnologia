@@ -118,7 +118,7 @@
                 </div>
             </div>
             <!-- Div inferior ocupando el 80% del contenedor -->
-            <div class="bottom-div" id="categorias-container">
+            <div id="categorias-container" class="categorias-container">
                 <!-- carga el contenido dinamicamente -->
             </div>
         </div>
