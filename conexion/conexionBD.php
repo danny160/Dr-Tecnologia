@@ -5,7 +5,7 @@ $username = "root";    // Usuario de MySQL (por defecto es 'root' en XAMPP)
 $password = "";        // Contraseña del usuario MySQL (por defecto está vacía en XAMPP)
 $database = "drtecnologia";  // Nombre de tu base de datos
 
-// Crear conexión
+// Crear conexión con todo lo necesario
 $conexion = new mysqli($host, $username, $password, $database);
 
 // Verificar conexión
