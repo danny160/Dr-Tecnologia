@@ -114,7 +114,10 @@
                 <div class="top-content">
                     <a href="inventario.php" class="btn-retroceder"><</a>
                     <h1 class="title">CATEGORÍAS</h1>
-                    <a href="#" class="edit-link">Editar</a>
+                    <div class="actions">
+                        <a href="#" class="añadir" data-bs-toggle="modal" data-bs-target="#modalAñadirCategoria">Añadir</a>
+                        <a href="#" class="editar">Modificar</a>
+                    </div>
                 </div>
             </div>
             <!-- Div inferior ocupando el 80% del contenedor -->
@@ -122,6 +125,39 @@
                 <!-- carga el contenido dinamicamente -->
             </div>
         </div>
+
+        <!-- modal para añadir una categoria -->
+        <div class="modal fade" id="modalAñadirCategoria" tabindex="-1" aria-labelledby="modalAñadirCategoriaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAñadirCategoriaLabel">Añadir Categoría</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formAñadirCategoria">
+                <div class="mb-3">
+                    <label for="nombreCategoria" class="form-label">Nombre de la Categoría</label>
+                    <input type="text" class="form-control" id="nombreCategoria" required>
+                </div>
+                <div class="mb-3">
+                    <label for="descripcionCategoria" class="form-label">Descripción de la Categoría</label>
+                    <textarea class="form-control" id="descripcionCategoria" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="imagenCategoria" class="form-label">Imagen de la Categoría</label>
+                    <input class="form-control" type="file" id="imagenCategoria" accept="image/*" required>
+                </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" form="formAñadirCategoria" class="btn btn-primary" id="guardarCategoria">Guardar</button>
+            </div>
+            </div>
+        </div>
+        </div>
+
 
 
     </div>

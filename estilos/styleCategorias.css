@@ -115,20 +115,51 @@ body {
     background-color: #34495E; /* Color de ejemplo */
 }
 
+/* Contenedor de la parte superior */
 .top-div {
     flex-grow: 0;
     flex-basis: 10%;
     display: flex;
     align-items: center;
+    justify-content: space-between;  /* Alinea los elementos en los extremos */
     padding: 10px 20px;
 }
 
+/* Contenedor principal de los elementos */
 .top-content {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between;  /* Alinea el contenido entre los extremos */
     width: 100%;
 }
+
+/* Estilo para el título */
+.title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #1B263A;
+    margin: 0;
+    text-shadow: 1px 1px 2px #5A6A83, -1px -1px 2px #5A6A83;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    flex-grow: 1;  /* Asegura que el título ocupe el espacio restante */
+    text-align: center;  /* Centra el título */
+}
+
+/* Contenedor de los enlaces de añadir y modificar */
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;  /* Espacio entre "Añadir" y "Modificar" */
+}
+
+/* Estilo de los enlaces de añadir y modificar */
+.añadir, .editar {
+    color: #1B263A;
+    font-size: 16px;
+    text-decoration: none;
+}
+
 
 .btn-retroceder {
     background-color: #1B263A; /* Color de fondo del botón circular */
@@ -144,22 +175,8 @@ body {
     cursor: pointer;
 }
 
-.title {
-    font-size: 28px;
-    font-weight: bold;
-    color: #1B263A; /* Color del texto */
-    margin: 0;
-    text-shadow: 1px 1px 2px #5A6A83, -1px -1px 2px #5A6A83; /* Sombra para el efecto de borde */
-    letter-spacing: 2px; /* Espaciado entre letras para mejorar el estilo */
-    text-transform: uppercase; /* Convertir el texto a mayúsculas */
-}
 
 
-.edit-link {
-    color: #1B263A; /* Color del texto "Editar" */
-    font-size: 16px;
-    text-decoration: none;
-}
 
 /* para las categorias */
 /* Estructura de la categoría */
