@@ -163,3 +163,35 @@ body {
     text-decoration: none;
 }
 
+/* para las categorias */
+
+#categorias-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+    gap: 6px; /* Espacio entre los elementos */
+}
+
+.categoria-card {
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.categoria-img {
+    width: 100%;
+    padding-top: 100%; /* Relación de aspecto 1:1 */
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.categoria-card h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1B263A;
+}
+
+
