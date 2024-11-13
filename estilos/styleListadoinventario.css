@@ -1,0 +1,185 @@
+/* General */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Barra superior ..................................................*/
+
+.topbar {
+    height: 75px;
+    background-color: rgba(33, 48, 80, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: fixed;
+    top: 0;
+    left: 0; /* Alineación al borde izquierdo */
+    width: 100%;
+    transition: width 0.3s ease; /* Transición suave */
+}
+
+/* Barra lateral --------------------------------------------------------*/
+.sidebar {
+    width: 15vw; /* Ancho dinámico basado en el viewport */
+    min-width: 80px; /* Ancho mínimo para pantallas pequeñas */
+    max-width: 180px; /* Ancho máximo para pantallas grandes */
+    height: 100vh;
+    background-color: #03153a;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3px;
+    transition: width 0.3s ease; /* Transición suave para el cambio de tamaño */
+    z-index: 10; /* Asegura que esté por encima de otros elementos */
+}
+
+.sidebar .logo img {
+    width: 20px; /* Ajusta el tamaño del logo para que sea más grande */
+    height: 60px; /* Mantiene la proporción del logo */
+    background-color: #07235c;
+}
+
+/* Estilo de los enlaces de la barra lateral */
+.sidebar .nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.sidebar .nav-links li {
+    width: 100%;
+}
+/* Estilo de los enlaces de la barra lateral */
+.sidebar .nav-links a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    color: #ffffff; /* Color del texto en blanco */
+    text-decoration: none;
+    font-size: 18px; /* Aumenta el tamaño de la fuente */
+    font-size: 1vw; /* El tamaño de fuente es relativo al ancho de la ventana */
+    padding: 15px 10%; /* El padding se ajusta proporcionalmente */
+}
+
+.sidebar .nav-links a:hover {
+    background-color: #1B263A; /* Color al pasar el mouse */
+}
+
+.sidebar .nav-links svg {
+    margin-right: 10px; /* Espacio entre el ícono y el texto */
+}
+
+.sidebar .logo img {
+    width: 100%; /* Ajusta el tamaño del logo al 100% del contenedor */
+    height: auto;
+}
+
+.sidebar .nav-links svg {
+    margin-right: 1vw; /* Espacio entre el ícono y el texto basado en vw */
+}
+
+/* Animacion de la barra lateral ---------------------------------- */
+.nav-links a {
+    opacity: 0; /* Inicialmente invisible */
+    transform: translateX(-20px); /* Mueve los elementos un poco a la izquierda */
+    transition: opacity 0.5s ease, transform 1s ease; /* Efecto de transición */
+}
+
+.nav-links a.visible {
+    opacity: 1; /* Hacer visible */
+    transform: translateX(0); /* Mueve los elementos a su posición original */
+}
+
+/* ------------------------div del contenido princial-------------------------------------------- */
+/* Estilo del div de contenido */
+.content{
+    position: absolute; /* Mantener la posición absoluta */
+    top: 78px; /* Desde el borde de la barra superior */
+    left: 15vw; /* Desde el borde de la barra lateral */
+    right: 28px; /* Límite derecho */
+    height: calc(100vh - 120px + 30px); /* Ajustar para que sea más largo en la parte inferior */
+    padding: 30px;
+    overflow: auto; /* Permitir desplazamiento si el contenido excede el tamaño */
+    display: flex;
+    flex-direction: column; /* Para que los divs se apilen verticalmente */
+}
+
+/* Estilos para .container y sus hijos */
+.container {
+    display: flex;
+    flex-direction: column; /* Coloca los elementos en una columna (uno encima del otro) */
+    height: 100%; /* Ocupa el 100% de la altura del contenedor principal */
+}
+
+.container-opciones {
+    flex: 0 0 20%; /* Ocupa el 20% de la altura del contenedor principal */
+}
+
+.container-tabla {
+    flex: 1; /* Ocupa el 80% restante del contenedor principal */
+}
+
+/* BOTONES Y INPUT DE BUSQUEDA */
+.btn-custom {
+    background-color: #f1f7ff; /* Color de fondo claro */
+    border: 6px solid #a3c2ff; /* Borde azul claro */
+    border-radius: 20px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 18px; /* Tamaño de fuente */
+    color: #333; /* Color de texto */
+    gap: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Sombra */
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-custom:hover {
+    background-color: #e0eaff; /* Fondo más claro al pasar el mouse */
+    box-shadow: 3px 3px 8px rgba(30, 80, 241, 0.4); /* Sombra más intensa al pasar el mouse */
+}
+
+/* Contenedor del input y del icono */
+.input-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 300px;
+}
+
+.input-container input[type="text"] {
+    width: 100%; /* El input ocupa todo el ancho del contenedor */
+    padding-right: 30px; /* Espacio para el icono */
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 14px;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.input-container i {
+    position: absolute;
+    right: 20px; /* Ajusta este valor según sea necesario */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #000000;
+    width: 20px;
+    font-size: 20px;
+    pointer-events: none; /* Para evitar que el ícono reciba eventos de clic */
+}
+
+.centerend{
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+#mensajeModal {
+    z-index: 1060 !important;
+}
+
+.modal-backdrop {
+    z-index: 1050 !important;
+}

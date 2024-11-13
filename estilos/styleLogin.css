@@ -1,0 +1,97 @@
+body {
+    background-image: url('../imagenes/fondoBody.png');
+    background-size: cover; /* La imagen cubre toda la pantalla */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-attachment: fixed; /* La imagen permanece fija mientras el contenido se desplaza */
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-form {
+    background: linear-gradient(to bottom, rgba(8, 44, 73, 0.699) 60%, rgba(224, 224, 224, 0.4) 80%); /* El blanco comienza más suavemente desde la mitad del input de contraseña */
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo transparente o semitransparente */
+    border-radius: 5px; /* Bordes redondeados si los quieres */
+    padding: 8px 8px 8px 40px; /* Espacio a la izquierda para el ícono */
+    font-size: 16px;
+    transition: all 0.3s ease; /* Transiciones suaves */
+    box-shadow: none; /* Elimina cualquier sombra en los inputs */
+    outline: none; /* Elimina el contorno que aparece al hacer clic en el input */
+    color: #ffffff; /* Cambia el color del texto a blanco */
+}
+
+.form-control::placeholder {
+    color: #ffffff; /* Cambia el color de los placeholders a blanco */
+}
+
+/* Agrega la animación de aparición */
+.form-group {
+    margin-bottom: 15px; /* Espacio entre cada grupo de formulario */
+    opacity: 0; /* Empieza siendo invisible */
+    transform: translateY(20px); /* Comienza un poco más abajo */
+    animation: fadeInUp 3s ease forwards; /* La animación dura 3 segundos */
+}
+
+/* Definición de la animación */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0; /* Invisible al inicio */
+        transform: translateY(20px); /* Desplazado hacia abajo */
+    }
+    100% {
+        opacity: 1; /* Totalmente visible al final */
+        transform: translateY(0); /* En su posición final */
+    }
+}
+
+.form-control::placeholder {
+    color: #ffffff; /* Cambia el color de los placeholders a blanco */
+}
+
+
+
+
+/* Para posicionar el ícono  ------------------------------------- */ 
+
+.input-icon {
+    position: relative; /* Para posicionar el ícono */
+}
+
+.input-icon svg {
+    position: absolute;
+    left: 10px; /* Espacio desde el lado izquierdo */
+    top: 50%; /* Centrado verticalmente */
+    transform: translateY(-50%); /* Ajuste para centrar completamente */
+    width: 24px; /* Tamaño del ícono */
+    height: 24px; /* Tamaño del ícono */
+}
+
+
+/* boton de loguin ----------------------------------------------*/ 
+
+.btn-primary {
+    margin-top: 17px;
+    background-color: #1F5272;
+    border: none;
+    padding: 10px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 10px;
+}
