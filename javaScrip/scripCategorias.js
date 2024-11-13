@@ -152,6 +152,7 @@ function mostrarMensaje(tipo, mensaje) {
         closeButton.addEventListener('click', () => {
             clearTimeout(timeout);  // Cancelar el timeout si el usuario cierra manualmente
             myModal.hide();  // Cerrar el modal
+            location.reload(); // Actualiza la página inmediatamente
         });
     }
 }
