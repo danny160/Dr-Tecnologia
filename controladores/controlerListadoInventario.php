@@ -6,7 +6,7 @@ include('../conexion/conexionBD.php');
 $query = "SELECT p.idProducto, p.nombreProducto, p.descripcionProducto, p.precioProducto, p.cantidadRegistrar,
                  p.idCategoria, p.fechaIngreso, c.nombreCategoria
           FROM productos p
-          LEFT JOIN categoria c ON p.idCategoria = c.idCateforia"; // Usamos LEFT JOIN para obtener la categoría
+          LEFT JOIN categoria c ON p.idCategoria = c.idCategoria"; // Usamos LEFT JOIN para obtener la categoría
 
 $result = mysqli_query($conexion, $query);
 

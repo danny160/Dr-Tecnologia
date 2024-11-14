@@ -138,7 +138,7 @@
                 <form id="formAñadirCategoria">
                 <div class="mb-3">
                     <label for="nombreCategoria" class="form-label">Nombre de la Categoría</label>
-                    <input type="text" class="form-control" id="nombreCategoria" required>
+                    <input type="text" class="form-control" id="nombreCategoria" maxlength="25" required>
                 </div>
                 <div class="mb-3">
                     <label for="descripcionCategoria" class="form-label">Descripción de la Categoría</label>

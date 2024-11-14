@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = mysqli_real_escape_string($conexion, $_POST['password']);
 
     // Consulta para validar el usuario y contraseña y obtener el rol
-    $query = "SELECT rolUsuario, idUsuario FROM login WHERE nombreUsuario = '$username' AND contraseña = '$password'";
+    $query = "SELECT rolUsuario, idUsuario FROM login WHERE nombreUsuarioInicio = '$username' AND contraseña = '$password'";
     $result = mysqli_query($conexion, $query);
 
     // Verificación de los resultados

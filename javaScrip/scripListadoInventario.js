@@ -15,6 +15,44 @@ document.addEventListener("DOMContentLoaded", function () {
         }, index * 200); // Aumenta el retraso para cada div
     });
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const msg = urlParams.get('msg');
+
+    let mensaje = "";
+    if (msg === "success") {
+        mensaje = "Producto registrado exitosamente.";
+    }else if(msg == "succes-Edit"){
+        mensaje = "Producto Editado exitosamente";
+    }else if (msg === "error_tipo") {
+        mensaje = "Error: Solo se permiten archivos en formato PNG, JPG o JPEG.";
+    } else if (msg === "error_bd") {
+        mensaje = "Error al guardar el producto en la base de datos.";
+    } else if (msg === "error_mover") {
+        mensaje = "Error al mover la imagen al directorio.";
+    } else if (msg === "error_archivo") {
+        mensaje = "No se ha seleccionado ninguna imagen o ocurrió un error.";
+    }else if(msg=="error_actualización"){
+        mensaje="error en actualizar el prodcuto";
+    }else if(msg == "solicnot"){
+        mensaje = "Solicitud no valida";
+    }
+
+    if (mensaje) {
+        // Mostrar el mensaje en el modal
+        const mensajeModal = new bootstrap.Modal(document.getElementById('mensajeModal'));
+        document.getElementById('mensajeModalBody').innerText = mensaje;
+        mensajeModal.show();
+
+        // Cerrar el modal y limpiar la URL después de 4 segundos
+        setTimeout(function() {
+            // Cerrar el modal
+            mensajeModal.hide();
+            
+            // Limpiar el parámetro de la URL (eliminando el 'msg')
+            history.pushState({}, "", window.location.pathname);
+        }, 4000); // 4 segundos
+    }
+
 });
 
 
@@ -30,7 +68,7 @@ const dataTableOptions = {
         { className: "centerend", targets: [0, 1, 2, 3, 4, 5, 6] },
         { orderable: false, targets: [0, 1, 2, 3, 4, 5, 6] }
     ],
-    pageLength: 10,
+    pageLength: 8,
     destroy: true,
     searching: true,  // Habilitamos la búsqueda global de DataTables
     info: false,  // Ocultar información de registros mostrados
@@ -123,46 +161,6 @@ function establecerFechaActual() {
 document.getElementById("btn-agregar").addEventListener("click", establecerFechaActual);
 
 
-// div para las notificaciones con php------------------------------------------------------------------------
-document.addEventListener("DOMContentLoaded", function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const msg = urlParams.get('msg');
-
-    let mensaje = "";
-    if (msg === "success") {
-        mensaje = "Producto registrado exitosamente.";
-    }else if(msg == "succes-Edit"){
-        mensaje = "Producto Editado exitosamente";
-    }else if (msg === "error_tipo") {
-        mensaje = "Error: Solo se permiten archivos en formato PNG, JPG o JPEG.";
-    } else if (msg === "error_bd") {
-        mensaje = "Error al guardar el producto en la base de datos.";
-    } else if (msg === "error_mover") {
-        mensaje = "Error al mover la imagen al directorio.";
-    } else if (msg === "error_archivo") {
-        mensaje = "No se ha seleccionado ninguna imagen o ocurrió un error.";
-    }else if(msg=="error_actualización"){
-        mensaje="error en actualizar el prodcuto";
-    }else if(msg == "solicnot"){
-        mensaje = "Solicitud no valida";
-    }
-
-    if (mensaje) {
-        // Mostrar el mensaje en el modal
-        const mensajeModal = new bootstrap.Modal(document.getElementById('mensajeModal'));
-        document.getElementById('mensajeModalBody').innerText = mensaje;
-        mensajeModal.show();
-
-        // Cerrar el modal y limpiar la URL después de 4 segundos
-        setTimeout(function() {
-            // Cerrar el modal
-            mensajeModal.hide();
-            
-            // Limpiar el parámetro de la URL (eliminando el 'msg')
-            history.pushState({}, "", window.location.pathname);
-        }, 4000); // 4 segundos
-    }
-});
 
 // -------------------------------Para la modificacion de producto o eliminar---------------------------------------------------------------------------
 
