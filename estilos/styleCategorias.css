@@ -154,7 +154,7 @@ body {
 }
 
 /* Estilo de los enlaces de añadir y modificar */
-.añadir, .editar {
+.buscar-accion {
     color: #1B263A;
     font-size: 16px;
     text-decoration: none;

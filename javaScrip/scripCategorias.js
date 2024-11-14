@@ -114,7 +114,16 @@ document.getElementById('guardarCategoria').addEventListener('click', function (
     }
 });
 
-// para buscar la categoria
+// para la busqueda -  -- --- --- -- -verifica si es para modificar o añadir
+let accionActual = "";  // Variable global para almacenar la acción actual
+
+// Detectar si se va a editar o eliminar
+document.querySelectorAll('.buscar-accion').forEach(boton => {
+    boton.addEventListener('click', function () {
+        accionActual = this.getAttribute('data-accion'); // Guardar la acción ('editar' o 'eliminar')
+    });
+});
+
 document.getElementById('buscarCategoria').addEventListener('click', function () {
     const nombreCategoria = document.getElementById('buscarNombreCategoria').value;
 
@@ -135,12 +144,15 @@ document.getElementById('buscarCategoria').addEventListener('click', function ()
                 var modalBusqueda = bootstrap.Modal.getInstance(document.getElementById('modalBusqueda'));
                 modalBusqueda.hide();
 
-                // Llamar la función para cargar el modal de edición con los datos de la categoría encontrada
-                cargarModalEdicion(data.categoria);
-
-                // Mostrar el modal de edición
-                var modalEdicion = new bootstrap.Modal(document.getElementById('modalEdicion'));
-                modalEdicion.show();
+                if (accionActual === 'editar') {
+                    // Cargar y mostrar el modal de edición
+                    cargarModalEdicion(data.categoria);
+                    var modalEdicion = new bootstrap.Modal(document.getElementById('modalEdicion'));
+                    modalEdicion.show();
+                } else if (accionActual === 'eliminar') {
+                    // Mostrar el modal de confirmación de eliminación
+                    mostrarModalConfirmacion(data.categoria);
+                }
 
             } else {
                 // Si no se encuentra, mostrar el mensaje de error
@@ -209,6 +221,41 @@ function cargarModalEdicion(categoria) {
     vistaPrevia.src = '../imgCategoria/' + categoria.imagenCategoria;
     document.getElementById('imagenCategoriaEditar').value = ""; // Limpiar el campo de imagen para evitar problemas con la validación
 }
+
+// funcion para eliminar
+function mostrarModalConfirmacion(categoria) {
+    document.getElementById('nombreCategoriaEliminar').textContent = categoria.nombreCategoria;
+
+    const modalConfirmacion = new bootstrap.Modal(document.getElementById('modalConfirmacion'));
+    modalConfirmacion.show();
+
+    // Agregar evento para confirmar la eliminación
+    document.getElementById('confirmarEliminar').onclick = function () {
+        // Enviar solicitud para eliminar la categoría
+        fetch('../controladores/categorias/controlerEliminarCategoria.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ idCategoria: categoria.idCategoria })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                mostrarMensaje('exito', 'Categoría eliminada exitosamente');
+                modalConfirmacion.hide();
+                location.reload(); // Actualizar la página
+            } else {
+                mostrarMensaje('error', 'Error al eliminar la categoría');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            mostrarMensaje('error', 'Error al eliminar la categoría');
+        });
+    };
+}
+
 
 // para mostrar los mensajes de erro, exito, advertencia
 function mostrarMensaje(tipo, mensaje) {

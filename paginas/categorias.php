@@ -115,8 +115,9 @@
                     <a href="inventario.php" class="btn-retroceder"><</a>
                     <h1 class="title">CATEGORÍAS</h1>
                     <div class="actions">
-                        <a href="#" class="añadir" data-bs-toggle="modal" data-bs-target="#modalAñadirCategoria">Añadir</a>
-                        <a href="#" class="editar" data-bs-toggle="modal" data-bs-target="#modalBusqueda">Modificar</a>
+                        <a href="#" class="buscar-accion" data-accion="añadir" data-bs-toggle="modal" data-bs-target="#modalAñadirCategoria">Añadir</a>
+                        <a href="#" class="buscar-accion" data-accion="modificar" data-bs-toggle="modal" data-bs-target="#modalBusqueda">Modificar</a>
+                        <a href="#" class="buscar-accion" data-accion="eliminar" data-bs-toggle="modal" data-bs-target="#modalBusqueda">Eliminar</a>
                     </div>
                 </div>
             </div>
@@ -230,6 +231,26 @@
             </div>
         </div>
         </div>
+
+        <!-- modal confirmacion de eliminacion -->
+        <div class="modal fade" id="modalConfirmacion" tabindex="-1" aria-labelledby="modalConfirmacionLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-warning">
+                        <h5 class="modal-title" id="modalConfirmacionLabel">Confirmación de Eliminación</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Estás seguro de que deseas eliminar la categoría <span id="nombreCategoriaEliminar"></span>?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" id="confirmarEliminar">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     </div>
 
