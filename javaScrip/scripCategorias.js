@@ -65,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+// para guardar la categoria cuando se quiere añadir una nueva
 document.getElementById('guardarCategoria').addEventListener('click', function (event) {
     event.preventDefault(); // Prevenir la recarga de la página
 
@@ -113,6 +114,103 @@ document.getElementById('guardarCategoria').addEventListener('click', function (
     }
 });
 
+// para buscar la categoria
+document.getElementById('buscarCategoria').addEventListener('click', function () {
+    const nombreCategoria = document.getElementById('buscarNombreCategoria').value;
+
+    if (nombreCategoria) {
+        fetch('../controladores/categorias/controlerBuscarCategoria.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ nombreCategoria: nombreCategoria })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                
+                
+                // Cerrar el modal de búsqueda
+                var modalBusqueda = bootstrap.Modal.getInstance(document.getElementById('modalBusqueda'));
+                modalBusqueda.hide();
+
+                // Llamar la función para cargar el modal de edición con los datos de la categoría encontrada
+                cargarModalEdicion(data.categoria);
+
+                // Mostrar el modal de edición
+                var modalEdicion = new bootstrap.Modal(document.getElementById('modalEdicion'));
+                modalEdicion.show();
+
+            } else {
+                // Si no se encuentra, mostrar el mensaje de error
+                mostrarMensaje('advertencia', 'Categoría no encontrada');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            mostrarMensaje('error', 'Error al realizar la búsqueda');
+        });
+    } else {
+        mostrarMensaje('advertencia', 'Por favor, ingresa un nombre de categoría');
+    }
+});
+
+// Evento para guardar cambios en la categoría
+document.getElementById('guardarCategoriaEditar').addEventListener('click', function () {
+    const idCategoria = document.getElementById('categoriaId').value;
+    const nombreCategoria = document.getElementById('nombreCategoriaEditar').value;
+    const descripcionCategoria = document.getElementById('descripcionCategoriaEditar').value;
+    const imagenCategoria = document.getElementById('imagenCategoriaEditar').files[0];
+    const imagenAnterior = document.getElementById('imgVistaPrevia').src.split('/').pop(); // Obtiene el nombre de la imagen actual
+
+    if (nombreCategoria && descripcionCategoria) {
+        const formData = new FormData();
+        formData.append('idCategoria', idCategoria);
+        formData.append('nombreCategoria', nombreCategoria);
+        formData.append('descripcionCategoria', descripcionCategoria);
+        formData.append('imagenAnterior', imagenAnterior); // Enviar la imagen anterior para eliminarla después
+
+        if (imagenCategoria) {
+            formData.append('imagenCategoria', imagenCategoria);
+        }
+
+        fetch('../controladores/categorias/controlerEditarCategoria.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                mostrarMensaje('exito', 'Categoría actualizada correctamente');
+                var modalEdicion = new bootstrap.Modal(document.getElementById('modalEdicion'));
+                modalEdicion.hide();
+            } else {
+                mostrarMensaje('error', 'Error al actualizar la categoría');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            mostrarMensaje('error', 'Error al guardar los cambios');
+        });
+    } else {
+        mostrarMensaje('advertencia', 'Por favor, completa todos los campos');
+    }
+});
+
+// Función para cargar el modal de edición con los datos de la categoría
+function cargarModalEdicion(categoria) {
+    document.getElementById('categoriaId').value = categoria.idCategoria;
+    document.getElementById('nombreCategoriaEditar').value = categoria.nombreCategoria;
+    document.getElementById('descripcionCategoriaEditar').value = categoria.descripcionCategoria;
+
+    // Mostrar la imagen actual en el modal de edición
+    const vistaPrevia = document.getElementById('imgVistaPrevia');
+    vistaPrevia.src = '../imgCategoria/' + categoria.imagenCategoria;
+    document.getElementById('imagenCategoriaEditar').value = ""; // Limpiar el campo de imagen para evitar problemas con la validación
+}
+
+// para mostrar los mensajes de erro, exito, advertencia
 function mostrarMensaje(tipo, mensaje) {
     // Referencias a los elementos dentro del modal
     const modalHeader = document.getElementById('modalHeader');
@@ -143,7 +241,7 @@ function mostrarMensaje(tipo, mensaje) {
     // Configurar el cierre automático después de 4 segundos
     const timeout = setTimeout(() => {
         myModal.hide(); // Cierra el modal automáticamente después de 4 segundos
-
+        location.reload(); // Actualiza la página inmediatamente
     }, 4000);
 
     // Agregar un evento al botón de cerrar
@@ -156,3 +254,4 @@ function mostrarMensaje(tipo, mensaje) {
         });
     }
 }
+

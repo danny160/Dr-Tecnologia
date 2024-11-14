@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }, index * 200); // Aumenta el retraso para cada div
     });
 
+    
     const urlParams = new URLSearchParams(window.location.search);
     const msg = urlParams.get('msg');
 
@@ -159,8 +160,6 @@ function establecerFechaActual() {
 
 // Agregar el evento al botón para cargar la fecha al hacer clic
 document.getElementById("btn-agregar").addEventListener("click", establecerFechaActual);
-
-
 
 // -------------------------------Para la modificacion de producto o eliminar---------------------------------------------------------------------------
 

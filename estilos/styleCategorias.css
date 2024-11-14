@@ -223,3 +223,9 @@ body {
     justify-content: space-around;
     margin-bottom: 20px;
 }
+
+/* Asegura que el modal de mensajes tenga un z-index mayor que el de otros modales */
+#mensajeModal {
+    z-index: 1060 !important;
+}
+

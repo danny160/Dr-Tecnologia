@@ -116,13 +116,48 @@
                     <h1 class="title">CATEGORÍAS</h1>
                     <div class="actions">
                         <a href="#" class="añadir" data-bs-toggle="modal" data-bs-target="#modalAñadirCategoria">Añadir</a>
-                        <a href="#" class="editar">Modificar</a>
+                        <a href="#" class="editar" data-bs-toggle="modal" data-bs-target="#modalBusqueda">Modificar</a>
                     </div>
                 </div>
             </div>
             <!-- Div inferior ocupando el 80% del contenedor -->
             <div id="categorias-container" class="categorias-container">
                 <!-- carga el contenido dinamicamente -->
+            </div>
+        </div>
+
+        <!-- Modal de mensajes -->
+        <div class="modal fade" id="mensajeModal" tabindex="-1" aria-labelledby="mensajeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header" id="modalHeader">
+                <h5 class="modal-title" id="mensajeModalLabel">Mensaje</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Aquí aparecerá el mensaje -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Modal de búsqueda -->
+        <div class="modal fade" id="modalBusqueda" tabindex="-1" aria-labelledby="modalBusquedaLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalBusquedaLabel">Buscar Categoría</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="buscarNombreCategoria" class="form-control" placeholder="Ingresa el nombre de la categoría">
+                    <button id="buscarCategoria" class="btn btn-primary mt-3">Buscar</button>
+                    <div id="mensajeBusqueda" class="mt-3"></div>
+                </div>
+                </div>
             </div>
         </div>
 
@@ -158,26 +193,43 @@
         </div>
         </div>
 
-        <!-- Modal de mensajes -->
-        <div class="modal fade" id="mensajeModal" tabindex="-1" aria-labelledby="mensajeModalLabel" aria-hidden="true">
+        <!-- Modal de Edición -->
+        <div class="modal fade" id="modalEdicion" tabindex="-1" aria-labelledby="modalEdicionLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-            <div class="modal-header" id="modalHeader">
-                <h5 class="modal-title" id="mensajeModalLabel">Mensaje</h5>
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalEdicionLabel">Editar Categoría</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" id="modalBody">
-                <!-- Aquí aparecerá el mensaje -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <div class="modal-body">
+                <form id="formEditarCategoria">
+                <input type="hidden" id="categoriaId">
+                <div class="mb-3">
+                    <label for="nombreCategoriaEditar" class="form-label">Nombre de la Categoría</label>
+                    <input type="text" class="form-control" id="nombreCategoriaEditar">
+                </div>
+                <div class="mb-3">
+                    <label for="descripcionCategoriaEditar" class="form-label">Descripción</label>
+                    <input type="text" class="form-control" id="descripcionCategoriaEditar">
+                </div>
+                
+                <!-- Vista previa de la imagen actual -->
+                <div id="vistaPreviaImagen" class="mb-3">
+                    <label class="form-label">Vista previa de la imagen actual</label><br>
+                    <img id="imgVistaPrevia" src="" alt="Vista previa" class="img-fluid" style="max-width: 200px;">
+                </div>
+
+                <div class="mb-3">
+                    <label for="imagenCategoriaEditar" class="form-label">Imagen</label>
+                    <input type="file" class="form-control" id="imagenCategoriaEditar">
+                </div>
+
+                <button type="button" class="btn btn-primary" id="guardarCategoriaEditar">Guardar Cambios</button>
+                </form>
             </div>
             </div>
         </div>
         </div>
-
-
-
 
     </div>
 
