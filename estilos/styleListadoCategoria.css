@@ -1,0 +1,276 @@
+/* General */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Barra superior ..................................................*/
+
+.topbar {
+    height: 75px;
+    background-color: rgba(33, 48, 80, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: fixed;
+    top: 0;
+    left: 0; /* Alineación al borde izquierdo */
+    width: 100%;
+    transition: width 0.3s ease; /* Transición suave */
+}
+
+/* Barra lateral --------------------------------------------------------*/
+.sidebar {
+    width: 15vw; /* Ancho dinámico basado en el viewport */
+    min-width: 80px; /* Ancho mínimo para pantallas pequeñas */
+    max-width: 180px; /* Ancho máximo para pantallas grandes */
+    height: 100vh;
+    background-color: #03153a;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3px;
+    transition: width 0.3s ease; /* Transición suave para el cambio de tamaño */
+    z-index: 10; /* Asegura que esté por encima de otros elementos */
+}
+
+.sidebar .logo img {
+    margin-top: 0px;
+    width: 150px; /* Ajusta el tamaño del logo para que sea más grande */
+    height: 60px; /* Mantiene la proporción del logo */
+    background-color: #07235c;
+}
+
+/* Estilo de los enlaces de la barra lateral */
+.sidebar .nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.sidebar .nav-links li {
+    width: 100%;
+}
+/* Estilo de los enlaces de la barra lateral */
+.sidebar .nav-links a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    color: #ffffff; /* Color del texto en blanco */
+    text-decoration: none;
+    font-size: 18px; /* Aumenta el tamaño de la fuente */
+    font-size: 1vw; /* El tamaño de fuente es relativo al ancho de la ventana */
+    padding: 15px 10%; /* El padding se ajusta proporcionalmente */
+}
+
+.sidebar .nav-links a:hover {
+    background-color: #1B263A; /* Color al pasar el mouse */
+}
+
+.sidebar .nav-links svg {
+    margin-right: 10px; /* Espacio entre el ícono y el texto */
+}
+
+.sidebar .logo img {
+    width: 100%; /* Ajusta el tamaño del logo al 100% del contenedor */
+    height: auto;
+}
+
+.sidebar .nav-links svg {
+    margin-right: 1vw; /* Espacio entre el ícono y el texto basado en vw */
+}
+
+/* Animacion de la barra lateral ---------------------------------- */
+.nav-links a {
+    opacity: 0; /* Inicialmente invisible */
+    transform: translateX(-20px); /* Mueve los elementos un poco a la izquierda */
+    transition: opacity 0.5s ease, transform 1s ease; /* Efecto de transición */
+}
+
+.nav-links a.visible {
+    opacity: 1; /* Hacer visible */
+    transform: translateX(0); /* Mueve los elementos a su posición original */
+}
+
+/* ------------------------div del contenido princial-------------------------------------------- */
+/* Estilo del div de contenido */
+.content{
+    overflow: hidden;
+    position: absolute; /* Mantener la posición absoluta */
+    top: 78px; /* Desde el borde de la barra superior */
+    left: 15vw; /* Desde el borde de la barra lateral */
+    right: 28px; /* Límite derecho */
+    height: calc(100vh - 120px + 30px); /* Ajustar para que sea más largo en la parte inferior */
+    display: flex;
+    flex-direction: column; /* Para que los divs se apilen verticalmente */
+}
+
+/* Estilos para el contenido interno de .content */
+.contenedor-inferior {
+    display: flex;
+    height: 100%; /* Resto de la altura (100% - 30%) */
+}
+
+.izquierda {
+    border-radius: 10px;
+    width: 24%;
+    margin-bottom: 0px;
+    background-color: #1e3559; /* Ejemplo de color de fondo */
+}
+
+
+.retoceder{
+    background-color: #1B263A; /* Color de fondo del botón circular */
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.superior {
+    height: 15%; /* Mantiene el 15% de la altura */
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos */
+    justify-content: space-between; /* Distribuye el espacio entre los extremos */
+    padding: 0 20px; /* Añade algo de espacio a los lados */
+}
+
+.superior .retoceder {
+    margin-right: 50px; /* Espacio entre el botón y el h1 */
+}
+
+.superior h1 {
+    font-size: 24px;
+    margin: 0; /* Quita márgenes alrededor para alinearlo correctamente */
+    color: black;
+}
+
+.superior h3 {
+    font-size: 18px;
+    margin: 0;
+    color: black;
+}
+
+.superior .izquierda-superior {
+    display: flex;
+    align-items: center;
+}
+
+.superior .derecha-superior {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Añade espacio entre los elementos de la derecha */
+}
+
+.derecha {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+    gap: 10px; /* Espaciado entre los elementos */
+    padding: 10px;
+    position: absolute; /* Posición fija en su contenedor padre */
+    top: 78px; /* Ajusta según tu diseño */
+    left: 22vw; /* Ajuste relativo al contenedor izquierdo */
+    right: 28px; /* Limita el ancho desde el borde derecho */
+    bottom: 10px; /* Asegura que se ajuste a la parte inferior de la ventana */
+    overflow-y: auto; /* Agrega desplazamiento vertical solo cuando sea necesario */
+    row-gap: 3px;
+}
+
+/* Estilo de la barra de desplazamiento */
+.derecha::-webkit-scrollbar {
+    width: 5px; /* Ancho de la barra de desplazamiento */
+}
+
+/* Estilo del fondo de la barra de desplazamiento */
+.derecha::-webkit-scrollbar-track {
+    background: #afa9a9; /* Color de fondo del track (fondo de la barra de desplazamiento) */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+/* Estilo del pulgar (la parte que se mueve) */
+.derecha::-webkit-scrollbar-thumb {
+    background-color: #1b263b; /* Color del pulgar */
+    border-radius: 10px; /* Bordes redondeados */
+    min-height: 5px; /* Mínima altura del pulgar */
+}
+
+/* Estilo al pasar el mouse sobre el pulgar */
+.derecha::-webkit-scrollbar-thumb:hover {
+    background-color: #0056b3; /* Color más oscuro cuando se pasa el mouse */
+    min-height: 5px; /* Mínima altura del pulgar */
+
+}
+
+
+
+.producto-general {
+    display: flex;
+    flex: 1 1 calc(50% - 20px); /* Ocupa la mitad del ancho del contenedor */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 10px;
+    margin: 5px;
+    height: 140px;
+}
+
+.producto-imagen {
+    width: 200px; /* Ancho fijo para el contenedor de la imagen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Esconde cualquier parte de la imagen que se desborde */
+}
+
+.producto-imagen img {
+    width: 100%; /* La imagen se ajusta al 100% del contenedor */
+    height: 100%; /* La imagen se ajusta al 100% del contenedor */
+    max-width: 100%; /* La imagen no se puede expandir más allá de su contenedor */
+    max-height: 100%; /* La imagen no se puede expandir más allá de su contenedor */
+    object-fit: contain; /* La imagen mantiene sus proporciones sin recortarse */
+}
+
+.producto-info {
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+    justify-content: space-between; /* Distribuye los elementos entre la parte superior e inferior */
+    width: 100%;
+    padding: 10px; /* Añade espacio interno */
+    margin-left: 10px;
+    text-align: center; /* Centra horizontalmente los elementos */
+}
+
+.producto-nombre {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0; /* Quita márgenes externos */
+}
+
+.producto-boton {
+    width: 150px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    align-self: center; /* Asegura que el botón esté centrado horizontalmente */
+}
+
+.producto-boton:hover {
+    background-color: #0056b3;
+}
