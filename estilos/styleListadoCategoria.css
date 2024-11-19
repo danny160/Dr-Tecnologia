@@ -148,7 +148,6 @@ body {
 
 .retoceder {
     background-color: #1B263A;
-    /* Color de fondo del botón circular */
     border: none;
     border-radius: 50%;
     color: white;
@@ -164,30 +163,18 @@ body {
 
 .superior {
     height: 15%;
-    /* Mantiene el 15% de la altura */
     display: flex;
     align-items: center;
-    /* Centra verticalmente los elementos */
     justify-content: space-between;
-    /* Distribuye el espacio entre los extremos */
     padding: 0 20px;
-    /* Añade algo de espacio a los lados */
 }
 
 .superior .retoceder {
     margin-right: 50px;
-    /* Espacio entre el botón y el h1 */
 }
 
 .superior h1 {
     font-size: 24px;
-    margin: 0;
-    /* Quita márgenes alrededor para alinearlo correctamente */
-    color: black;
-}
-
-.superior h3 {
-    font-size: 18px;
     margin: 0;
     color: black;
 }
@@ -195,6 +182,12 @@ body {
 .superior .izquierda-superior {
     display: flex;
     align-items: center;
+}
+
+.superior h3 {
+    font-size: 18px;
+    margin: 0;
+    color: black;
 }
 
 .superior .derecha-superior {

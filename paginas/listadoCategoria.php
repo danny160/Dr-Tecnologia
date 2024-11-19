@@ -111,7 +111,7 @@
         <div class="content">
             <div class="superior" id="categoriaDetalle">
                 <div class="izquierda-superior">
-                    <a href="../paginas/categorias.php" class="retoceder">&lt;</a>
+                    <a href="../paginas/categorias.php" class="retoceder"><</a>
                     <h1 id="nombreCategoria"></h1>
                 </div>
                 <div class="derecha-superior">
