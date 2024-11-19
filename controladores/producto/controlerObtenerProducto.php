@@ -1,5 +1,5 @@
 <?php
-include('../conexion/conexionBD.php');
+include('../../conexion/conexionBD.php');
 
 // Obtener el parámetro de búsqueda
 $query = $_GET['query'] ?? '';

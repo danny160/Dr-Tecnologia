@@ -1,6 +1,6 @@
 <?php
 // Incluyendo la conexión a la base de datos
-include('../conexion/conexionBD.php');
+include('../../conexion/conexionBD.php');
 
 // Consulta para obtener los datos de la tabla productos y el nombre de la categoría
 $query = "SELECT p.idProducto, p.nombreProducto, p.descripcionProducto, p.precioProducto, p.cantidadRegistrar,

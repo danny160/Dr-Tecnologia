@@ -166,7 +166,7 @@ $estado = isset($_GET['estado']) ? $_GET['estado'] : null;
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="../controladores/controlerRegistrarUsuario.php">
+                        <form method="POST" action="../controladores/usuarios/controlerRegistrarUsuario.php">
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Nombre</label>
                                 <input type="text" class="form-control" name="nombre" id="nombre" maxlength="25"

@@ -1,5 +1,5 @@
 <?php
-include('../conexion/conexionBD.php');
+include('../../conexion/conexionBD.php');
 
 // Obtener el ID del producto a eliminar
 $idProducto = $_POST['idProducto'] ?? '';

@@ -1,6 +1,6 @@
 <?php
 // Incluyendo la conexión a la base de datos
-include('../conexion/conexionBD.php');
+include('../../conexion/conexionBD.php');
 
 // Verificamos si se ha enviado una solicitud para cambiar el estado de la cuenta
 if (isset($_POST['idUsuario']) && isset($_POST['estadoCuenta'])) {

@@ -1,5 +1,5 @@
 <?php
-include('../conexion/conexionBD.php');
+include('../../conexion/conexionBD.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombreProducto = $_POST['nombre'];

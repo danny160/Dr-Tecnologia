@@ -1,5 +1,5 @@
 <?php
-include('../conexion/conexionBD.php');
+include('../../conexion/conexionBD.php');
 
 // Consulta para obtener las categorías
 $queryCategorias = "SELECT idCategoria, nombreCategoria FROM categoria";

@@ -105,7 +105,7 @@ const inicializarDataTable = async () => {
 // Conexión con el controlador de productos
 const datosTabla = async () => {
     try {
-        const response = await fetch('../controladores/controlerListadoInventario.php');
+        const response = await fetch('../controladores/producto/controlerListadoInventario.php');
         const data = await response.text();
         document.querySelector('tbody').innerHTML = data;
     } catch (error) {
@@ -130,7 +130,7 @@ window.addEventListener("load", async () => {
 
 // Cargar opciones de categorías cuando el modal se abre
 document.getElementById('addProducto').addEventListener('show.bs.modal', function () {
-    fetch('../controladores/obtenerCategoria.php')
+    fetch('../controladores/categorias/obtenerCategoria.php')
         .then(response => response.json())
         .then(data => {
             const selectCategoria = document.getElementById('categoria');
@@ -171,7 +171,7 @@ document.getElementById('formEditarProducto').addEventListener('submit', async (
     formData.append('idProducto', document.getElementById('productoBuscarIdNombre').value);
 
     try {
-        const response = await fetch('../controladores/controlerActualizarProducto.php', {
+        const response = await fetch('../controladores/producto/controlerActualizarProducto.php', {
             method: 'POST',
             body: formData
         });
@@ -230,7 +230,7 @@ document.getElementById('btnBuscarProducto').addEventListener('click', async () 
 
     try {
         // Realiza la solicitud de búsqueda del producto
-        const response = await fetch(`../controladores/controlerObtenerProducto.php?query=${query}`);
+        const response = await fetch(`../controladores/producto/controlerObtenerProducto.php?query=${query}`);
         const result = await response.json();
 
         if (result.success) {
@@ -252,7 +252,7 @@ document.getElementById('btnBuscarProducto').addEventListener('click', async () 
                 // Configura la categoría en el modal de edición
                 const categoriaSelect = document.getElementById('categoriaEditar');
                 categoriaSelect.innerHTML = '<option value="">Seleccione una categoría</option>';
-                const categoriasResponse = await fetch('../controladores/obtenerCategoria.php');
+                const categoriasResponse = await fetch('../controladores/categorias/obtenerCategoria.php');
                 const categorias = await categoriasResponse.json();
                 categorias.forEach(categoria => {
                     const option = document.createElement('option');
@@ -282,7 +282,7 @@ document.getElementById('btnBuscarProducto').addEventListener('click', async () 
                 document.getElementById('confirmarEliminar').addEventListener('click', async () => {
                     try {
                         const idProductoEliminar = result.producto.idProducto;
-                        const response = await fetch('../controladores/controlerEliminarProducto.php', {
+                        const response = await fetch('../controladores/producto/controlerEliminarProducto.php', {
                             method: 'POST',
                             body: new URLSearchParams({ 'idProducto': idProductoEliminar })
                         });

@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
             link.classList.add('visible'); // Añade la clase visible
         }, index * 100); // Aumenta el retraso para cada enlace
     });
-
 });
 
 // -----------------------------------------Formulario de registro------------------------------------------
@@ -92,7 +91,7 @@ const inicializarDataTable = async () => {
 
 const datosTabla = async () => {
     try {
-        const response = await fetch('../controladores/controlUsuario.php');
+        const response = await fetch('../controladores/usuarios/controlUsuario.php');
         const data = await response.text();
         document.querySelector('tbody').innerHTML = data;
     } catch (error) {
@@ -104,7 +103,7 @@ const datosTabla = async () => {
 function cambiarEstado(idUsuario, nuevoEstado) {
     // Enviamos la solicitud mediante AJAX para cambiar el estado de la cuenta
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../controladores/controlUsuario.php", true);
+    xhr.open("POST", "../controladores/usuarios/controlUsuario.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -118,7 +117,7 @@ function cambiarEstado(idUsuario, nuevoEstado) {
 
 // Función para abrir el modal y cargar los datos del usuario en el modal
 function abrirModalEditarUsuario(idUsuario) {
-    fetch('../controladores/controlUsuario.php?idUsuario=' + idUsuario)
+    fetch('../controladores/usuarios/controlUsuario.php?idUsuario=' + idUsuario)
         .then(response => response.json())
         .then(data => {
             document.getElementById('idUsuarioEditar').value = data.idUsuario;
@@ -146,7 +145,7 @@ function guardarEdicionUsuario() {
     const form = document.getElementById('formEditarUsuario');
     const formData = new FormData(form);
 
-    fetch('../controladores/controlUsuario.php', {
+    fetch('../controladores/usuarios/controlUsuario.php', {
         method: 'POST',
         body: formData
     })
