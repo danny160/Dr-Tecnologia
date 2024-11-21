@@ -16,19 +16,18 @@
 
     <div class="container">
 
-            <!-- Barra superior -->
+        <!-- Barra superior -->
         <div class="topbar">
             <div class="admin-info" style="display: flex; align-items: center; margin-right: 20px;">
                 <!-- Icono de administrador (color blanco) -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="white"
-                            class="bi bi-person" viewBox="0 0 16 16">
-                            <path
-                                d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
-                        </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="white" class="bi bi-person"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+                </svg>
                 <span style="margin-left: 8px; color: white;">Administrador</span>
             </div>
         </div>
-
 
         <!-- Barra lateral -->
         <div class="sidebar">
@@ -110,16 +109,58 @@
 
         <!-- Contenedor principal -->
         <div class="content">
+            <div class="izquierda">
+                <div class="informacion">
+                    <div class="divTitulo">
+                        <h2>Ventas - Meses</h2>
+                    </div>
+                    <div class="grafica"></div>
+                </div>
 
-        
+            </div>
+            <div class="derecha">
+                <div class="superior">
+                    <div class="historial">
+                        <h2>Historial</h2>
+                    </div>
+                    <div class="imagenes">
+                        <div class="img1">
+                            <a href=""><img src="../imagenes/ventas- productos 1.png" alt=""></a>
+                        </div>
+                        <div class="img2">
+                            <a href=""><img src="../imagenes/ventas- producto 2.png" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="inferior">
+                    <div class="ventas">
+                        <h2>Ventas</h2>
+                    </div>
+                    <div class="opciones">
+                        <div class="opcion1">
+                            <a href="../paginas/categorias.php"><img src="../imagenes/categoria1.png" alt=""></a>
+                        </div>
+                        <div class="opcion2">
+                            <a href=""><img src="../imagenes/categoria2.png" alt=""></a>
+                        </div>
+                        <div class="opcion3">
+                            <a href="../paginas/listadoInventario.php"><img src="../imagenes/categoria3.png" alt=""></a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
         </div>
+    </div>
+    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
-    <script src="../javaScrip/scripAdministrador.js"></script>
+    <script src="../javaScrip/scripVentas.js"></script>
 
 
 </body>

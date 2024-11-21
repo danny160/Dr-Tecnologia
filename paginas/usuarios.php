@@ -1,15 +1,10 @@
-<?php
-$estado = isset($_GET['estado']) ? $_GET['estado'] : null;
-?>
-
-
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrador-Usuarios</title>
+    <title>Usuarios</title>
 
     <!-- Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
@@ -127,7 +122,7 @@ $estado = isset($_GET['estado']) ? $_GET['estado'] : null;
                 <!-- Boton de añadir usuario -->
                 <div class="row mt-3 mb-3">
                     <div class="d-flex justify-content-end col">
-                        <button class="btn btn-sm - btn-primary" data-bs-toggle="modal"
+                        <button class="btn btn-sm - btn-primary" id="btnAñadirUsuario" data-bs-toggle="modal"
                             data-bs-target="#addUserModal">Añadir Usuarios</button>
                     </div>
                 </div>
@@ -156,203 +151,224 @@ $estado = isset($_GET['estado']) ? $_GET['estado'] : null;
 
             </div>
         </div>
+    </div>
 
-        <!-- Modal de registrar Usuario -->
-        <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModal" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="addUserModalLabel">Añadir Usuario</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="POST" action="../controladores/usuarios/controlerRegistrarUsuario.php">
-                            <div class="mb-3">
-                                <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" name="nombre" id="nombre" maxlength="25"
-                                    required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="apellido" class="form-label">Apellido</label>
-                                <input type="text" class="form-control" name="apellido" id="apellido" maxlength="25"
-                                    required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
-                                <select class="form-select" name="tipoDocumento" id="tipoDocumento" required>
-                                    <option value="" disabled selected>Seleccione un tipo</option>
-                                    <option value="Cc">Cédula de Ciudadanía (Cc)</option>
-                                    <option value="Pasaporte">Pasaporte (PPT)</option>
-                                    <option value="otro">otro</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="cedula" class="form-label">Documento</label>
-                                <input type="text" class="form-control" name="documento" id="documento" maxlength="11"
-                                    required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="edad" class="form-label">Edad</label>
-                                <input type="number" class="form-control" name="edad" id="edad" min="18" max="100"
-                                    required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
-                                <input type="date" class="form-control" name="fechaNacimiento" id="fechaNacimiento"
-                                    required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="nombreUsuario" class="form-label">Nombre de Usuario</label>
-                                <input type="text" class="form-control" name="nombreUsuario" id="nombreUsuario"
-                                    maxlength="11" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="contrasena" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" name="contraseña" id="contraseña"
-                                    maxlength="11" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="correoElectronico" class="form-label">Correo Electronico</label>
-                                <input type="gmail" class="form-control" name="correoElectronico" id="correoElectronico"
-                                    min="8" max="100" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="rolUsuario" class="form-label">Rol de Usuario</label>
-                                <select class="form-select" name="rolUsuario" id="rolUsuario" required>
-                                    <option value="" disabled selected>Seleccione un rol</option>
-                                    <option value="admin">Administrador</option>
-                                    <option value="userInventory">User Inventory</option>
-                                    <option value="userSales">User Sales</option>
-                                    <option value="userInvite">User Invite</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="fechaCreacion" class="form-label">Fecha de Creación de la Cuenta</label>
-                                <input type="date" class="form-control" name="fechaCreacion" id="fechaCreacion"
-                                    required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="estadoCuenta" class="form-label">Estado de Cuenta</label>
-                                <select class="form-select" name="estadoCuenta" id="estadoCuenta" required>
-                                    <option value="0">Activo</option>
-                                    <option value="1">Inactivo</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Registrar</button>
-                        </form>
-                    </div>
+    <!-- Modal de mensajes -->
+    <div class="modal fade" id="mensajeModal" tabindex="-1" aria-labelledby="mensajeModalLabel" aria-hidden="true"
+        style="z-index: 9999;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Encabezado del Modal -->
+                <div class="modal-header" id="modalHeader">
+                    <h5 class="modal-title" id="mensajeModalLabel">Mensaje</h5>
+                    <button type="button" id="btnCerrarModalMensaje" class="btn-close-Mensaje" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <!-- Cuerpo del Modal donde aparecerá el mensaje -->
+                <div class="modal-body" id="modalBody">
+                    <!-- El mensaje será insertado aquí -->
+                </div>
+                <!-- Pie del Modal con el botón de Cerrar -->
+                <div class="modal-footer">
+                    <button type="button" id="btnCerrarModalMensaje" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Div de mensajes de registro Usuario -->
-        <div class="container mt-5">
-            <?php if ($estado === 'exito' || $estado === 'error'): ?>
-                <div class="modal fade show d-block" id="modalMensaje" tabindex="-1" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title"><?php echo $estado === 'exito' ? 'Éxito' : 'Error'; ?></h5>
-                            </div>
-                            <div class="modal-body">
-                                <p><?php echo $estado === 'exito' ? 'Usuario Agregado exitosamente.' : 'Hubo un error al registrar el usuario. Por favor, inténtelo de nuevo.'; ?>
-                                </p>
+    <!-- Modal de registrar Usuario -->
+    <div class="modal fade" id="addUserModal" aria-labelledby="addUserModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="añadirUsuario">Añadir Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" id="formRegistrarUsuario">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" name="nombre" id="nombre" maxlength="25" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="apellido" class="form-label">Apellido</label>
+                            <input type="text" class="form-control" name="apellido" id="apellido" maxlength="25"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
+                            <select class="form-select" name="tipoDocumento" id="tipoDocumento" required>
+                                <option value="" disabled selected>Seleccione un tipo</option>
+                                <option value="Cc">Cédula de Ciudadanía (Cc)</option>
+                                <option value="Pasaporte">Pasaporte (PPT)</option>
+                                <option value="otro">otro</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <div class="mb-3">
+                                <label for="documento" class="form-label">Documento</label>
+                                <input type="text" class="form-control" name="documento" id="documento" maxlength="11"
+                                    required>
                             </div>
                         </div>
-                    </div>
-                </div>
-            <?php endif; ?>
-        </div>
+                        <div class="mb-3">
+                            <label for="edad" class="form-label">Edad</label>
+                            <input type="number" class="form-control" name="edad" id="edad" min="18" max="100" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                            <input type="date" class="form-control" name="fechaNacimiento" id="fechaNacimiento"
+                                required>
+                        </div>
 
-        <!-- Modal para Editar Usuario -->
-        <div class="modal fade" id="modalEditarUsuario" tabindex="-1" aria-labelledby="editarUsuarioLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editarUsuarioLabel">Editar Usuario</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="formEditarUsuario">
-                            <input type="hidden" id="idUsuarioEditar" name="idUsuario">
-                            <div class="mb-3">
-                                <label for="nombreUsuarioEditar" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="nombreUsuarioEditar" name="nombreUsuarioEditar">
+                        <div class="mb-3">
+                            <label for="nombreUsuario" class="form-label">Nombre de Usuario</label>
+                            <input type="text" class="form-control" name="nombreUsuario" id="nombreUsuario"
+                                maxlength="11" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contraseña" class="form-label">Contraseña</label>
+                            <div style="display: flex; align-items: center;">
+                                <input type="password" class="form-control" id="contraseña" name="contraseña"
+                                    style="flex: 1;" />
+                                <button type="button" id="togglePassword" style="margin-left: 5px;">👁️</button>
+                                <button type="button" id="generatePassword" style="margin-left: 5px;">🔄</button>
                             </div>
-                            <div class="mb-3">
-                                <label for="apellidoUsuarioEditar" class="form-label">Apellido</label>
-                                <input type="text" class="form-control" id="apellidoUsuarioEditar" name="apellidoUsuarioEditar">
-                            </div>
-                            <div class="mb-3">
-                                <label for="tipoDocumentoEditar" class="form-label">Tipo de Documento</label>
-                                <select class="form-select" name="tipoDocumentoEditar" id="tipoDocumentoEditar" required>
-                                    <option value="" disabled selected>Seleccione un tipo</option>
-                                    <option value="Cc">Cédula de Ciudadanía (Cc)</option>
-                                    <option value="Pasaporte">Pasaporte (PPT)</option>
-                                    <option value="otro">otro</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="documentoUsuarioEditar" class="form-label">Documento</label>
-                                <input type="text" class="form-control" id="documentoUsuarioEditar" name="documentoUsuarioEditar" >
-                            </div>
-                            <div class="mb-3">
-                                <label for="edadEditar" class="form-label">Edad</label>
-                                <input type="number" class="form-control" name="edadEditar" id="edadEditar" min="18" max="100"
-                                    required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="fechaNacimientoEditar" class="form-label">Fecha de Nacimiento</label>
-                                <input type="date" class="form-control" name="fechaNacimientoEditar" id="fechaNacimientoEditar"
-                                    required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="nombreUsuarioInicioEditar" class="form-label">Nombre de Usuario</label>
-                                <input type="text" class="form-control" name="nombreUsuarioInicioEditar" id="nombreUsuarioInicioEditar"
-                                    maxlength="11" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="contraseñaEditar" class="form-label">Contraseña</label>
-                                <input type="text" class="form-control" name="contraseñaEditar" id="contraseñaEditar"
-                                    maxlength="11" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="correoElectronicoEditar" class="form-label">Correo Electronico</label>
-                                <input type="gmail" class="form-control" name="correoElectronicoEditar" id="correoElectronicoEditar"
-                                    min="8" max="100" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="rolUsuario" class="form-label">Rol de Usuario</label>
-                                <select class="form-select" name="rolUsuarioEditar" id="rolUsuarioEditar" required>
-                                    <option value="" disabled selected>Seleccione un rol</option>
-                                    <option value="admin">Administrador</option>
-                                    <option value="userInventory">User Inventory</option>
-                                    <option value="userSales">User Sales</option>
-                                    <option value="userInvite">User Invite</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="fechaCreacionEditar" class="form-label">Fecha de Creación de la Cuenta</label>
-                                <input type="date" class="form-control" name="fechaCreacionEditar" id="fechaCreacionEditar"
-                                readonly>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="estadoCuentaEditar" class="form-label">Estado de Cuenta</label>
-                                <select class="form-select" id="estadoCuentaEditar" name="estadoCuentaEditar">
-                                    <option value="0">Activo</option>
-                                    <option value="1">Bloqueado</option>
-                                </select>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" onclick="guardarEdicionUsuario()">Guardar cambios</button>
-                    </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="correoElectronico" class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" name="correoElectronico" id="correoElectronico"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="rolUsuario" class="form-label">Rol de Usuario</label>
+                            <select class="form-select" name="rolUsuario" id="rolUsuario" required>
+                                <option value="" disabled selected>Seleccione un rol</option>
+                                <option value="admin">Administrador</option>
+                                <option value="userInventory">Usuario Inventario</option>
+                                <option value="userSales">Usuario Ventas</option>
+                                <option value="userInvite">Usuario Invitado</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fechaCreacion" class="form-label">Fecha de Creación de la Cuenta</label>
+                            <input type="date" class="form-control" name="fechaCreacion" id="fechaCreacion" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="estadoCuenta" class="form-label">Estado de Cuenta</label>
+                            <select class="form-select" name="estadoCuenta" id="estadoCuenta" required>
+                                <option value="0">Activo</option>
+                                <option value="1">Inactivo</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="btnRegistrar">Registrar</button>
+                    </form>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Editar Usuario -->
+    <div class="modal fade" id="modalEditarUsuario" aria-labelledby="modalEditarUsuarioLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditarUsuarioLabel">Editar Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="formEditarUsuario">
+                    <div class="modal-body">
+                        <input type="hidden" id="idUsuarioEditar" name="idUsuario" />
+
+                        <div class="mb-3">
+                            <label for="tipoDocumentoEditar" class="form-label">Tipo de Documento</label>
+                            <select id="tipoDocumentoEditar" name="tipoDocumentoEditar" class="form-control">
+                                <option value="Cc">Cédula de Ciudadanía</option>
+                                <option value="Pasaporte">Pasaporte</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="documentoUsuarioEditar" class="form-label">Documento</label>
+                            <input type="text" id="documentoUsuarioEditar" name="documentoUsuarioEditar"
+                                class="form-control" maxlength="11" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="nombreUsuarioEditar" class="form-label">Nombre</label>
+                            <input type="text" id="nombreUsuarioEditar" name="nombreUsuarioEditar" class="form-control"
+                                required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="apellidoUsuarioEditar" class="form-label">Apellido</label>
+                            <input type="text" id="apellidoUsuarioEditar" name="apellidoUsuarioEditar"
+                                class="form-control" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="edadEditar" class="form-label">Edad</label>
+                            <input type="number" id="edadEditar" name="edadEditar" class="form-control" min="18"
+                                required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="fechaNacimientoEditar" class="form-label">Fecha de Nacimiento</label>
+                            <input type="date" id="fechaNacimientoEditar" name="fechaNacimientoEditar"
+                                class="form-control" max="" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="nombreUsuarioInicioEditar" class="form-label">Nombre de Usuario</label>
+                            <input type="text" id="nombreUsuarioInicioEditar" name="nombreUsuarioInicioEditar"
+                                class="form-control" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="contraseñaEditar" class="form-label">Contraseña</label>
+                            <div style="display: flex; align-items: center;">
+                                <input type="password" class="form-control" id="contraseñaEditar" name="contraseñaEditar"
+                                    style="flex: 1;" />
+                                <button type="button" id="togglePasswordEditar" style="margin-left: 5px;">👁️</button>
+                                <button type="button" id="generatePasswordEditar" style="margin-left: 5px;">🔄</button>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="correoElectronicoEditar" class="form-label">Correo Electrónico</label>
+                            <input type="email" id="correoElectronicoEditar" name="correoElectronicoEditar"
+                                class="form-control" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="rolUsuarioEditar" class="form-label">Rol</label>
+                            <select id="rolUsuarioEditar" name="rolUsuarioEditar" class="form-control" required>
+                                <option value="" disabled selected>Seleccione un rol</option>
+                                <option value="admin">Administrador</option>
+                                <option value="userInventory">Usuario Inventario</option>
+                                <option value="userSales">Usuario Ventas</option>
+                                <option value="userInvite">Invitado</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="estadoCuentaEditar" class="form-label">Estado de la Cuenta</label>
+                            <select id="estadoCuentaEditar" name="estadoCuentaEditar" class="form-control" required>
+                                <option value="0">Activo</option>
+                                <option value="1">Inactivo</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" id="btnActualizarUsuario">Actualizar
+                            Usuario</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

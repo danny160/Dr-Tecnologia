@@ -123,3 +123,48 @@ body {
     vertical-align: middle !important;
 }
 
+/* Modal de mensaje personalizado */
+.mensajeModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    display: none; /* Inicialmente oculto */
+    justify-content: center;
+    align-items: center;
+    z-index: 99999 !important; /* Asegúrate que sea muy alto */
+}
+
+/* Otros estilos */
+.addUserModal {
+    z-index: 999 !important; /* Asegúrate de que este sea más bajo que el del modal de mensaje */
+}
+
+/* Personalización de colores del encabezado */
+.modal-header.exito {
+    background-color: #4CAF50; /* Verde para éxito */
+    color: white;
+}
+
+.modal-header.error {
+    background-color: #f44336; /* Rojo para error */
+    color: white;
+}
+
+.modal-header.info {
+    background-color: #0013c0; /* Azul para información */
+    color: white;
+}
+
+/* Aseguramos que el contenido del modal esté en primer plano */
+.mensajeModalContent {
+    position: relative;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    z-index: 10001; /* Asegura que el contenido del modal esté por encima del fondo */
+}
+

@@ -7,15 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }, index * 100); // Aumenta el retraso para cada enlace
     });
 
-    // Efecto para los divs de opciones
-    const opciones = document.querySelectorAll('.div-opciones');
-    opciones.forEach((opcion, index) => {
-        setTimeout(() => {
-            opcion.classList.add('visible'); // Añade la clase visible
-        }, index * 200); // Aumenta el retraso para cada div
-    });
-
-    
     const urlParams = new URLSearchParams(window.location.search);
     const msg = urlParams.get('msg');
 
@@ -226,7 +217,6 @@ document.getElementById('btnEliminarProducto').addEventListener('click', () => {
 // Maneja el botón de "Buscar" dentro del modal de búsqueda
 document.getElementById('btnBuscarProducto').addEventListener('click', async () => {
     const query = document.getElementById('productoBuscarIdNombre').value;
-    if (!query) return;
 
     try {
         // Realiza la solicitud de búsqueda del producto
@@ -269,6 +259,7 @@ document.getElementById('btnBuscarProducto').addEventListener('click', async () 
                 modalEditarProducto.show();
 
             } else if (accionActual === "eliminar") {
+
                 // Configura y muestra el modal de confirmación de eliminación
                 const mensajeModal = new bootstrap.Modal(document.getElementById('mensajeModal'));
                 document.getElementById('mensajeModalBody').innerText = `¿Estás seguro de que deseas eliminar el producto "${result.producto.nombreProducto}"?`;
@@ -303,12 +294,12 @@ document.getElementById('btnBuscarProducto').addEventListener('click', async () 
                             setTimeout(() => {
                                 mensajeModal.hide();
                                 location.reload(); // Recargar la página si la operación fue exitosa
-                            }, 4000); // Esperar 4 segundos antes de recargar
+                            }, 400); // Esperar 4 segundos antes de recargar
                         } else {
                             // Si la eliminación falló, también eliminar los botones y mostrar el mensaje
                             setTimeout(() => {
                                 mensajeModal.hide(); // Cerrar el modal si no fue exitosa
-                            }, 4000);
+                            }, 400);
                         }
                 
                     } catch (error) {
@@ -318,7 +309,12 @@ document.getElementById('btnBuscarProducto').addEventListener('click', async () 
                 
             }
         } else {
-            alert(result.message);
+            // Mostrar el mensaje en el modal de mensaje
+            const mensajeModal = new bootstrap.Modal(document.getElementById('mensajeModal'));
+            document.getElementById('mensajeModalBody').innerText = result.message;
+            mensajeModal.show();
+
+            console.log(result.message); /// -----------------------------------------------------------------------------------------------------------------------------------
         }
     } catch (error) {
         console.error('Error al buscar el producto:', error);

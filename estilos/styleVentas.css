@@ -98,15 +98,165 @@ body {
 /* ------------------------div del contenido princial-------------------------------------------- */
 /* Estilo del div de contenido */
 .content {
-    background-color: #1B263A;
-    position: absolute; /* Cambiar a posición absoluta */
-    top: 94px; /* Desde el borde de la barra superior */
-    left: 14vw; /* Desde el borde de la barra lateral, usa vw para ser responsive */
-    right: 30px; /* Límite derecho */
-    bottom: 0; /* Límite inferior */
-    padding: 20px; /* Espaciado interno */
-    overflow: auto; /* Permitir desplazamiento si el contenido excede el tamaño */
+    position: absolute;
+    top: 94px;
+    left: 14vw;
+    right: 30px;
+    bottom: 14px;
+    padding: 14px;
+    overflow: auto;
     display: flex;
-    flex-direction: column; /* Para que los divs se apilen verticalmente */
-    margin-left: 20px; /* Margen izquierdo para mantener el espacio */
+    flex-direction: row;
+    margin-left: 20px;
 }
+
+.derecha{
+    width: 50%;
+    height: 100%;
+}
+
+.superior{
+    width: 100%;
+    height: 50%;
+    background-color: aqua;
+}
+
+.historial{
+    background-color: #3a5a7d;
+    width: 100%;
+    height: 20%;
+    display: flex; /* Activa Flexbox */
+    justify-content: center; /* Centra horizontalmente */
+}
+
+.historial h2{
+    color: #ffffff;
+}
+
+.imagenes{
+    margin: 10px;
+    width: 95%;
+    height: 70%;
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    border: 6px solid #3a5a7d; /* Borde negro sólido */   
+}
+
+.imagenes img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.img1{
+    width: 50%;
+    height: 80%;
+    align-items: center; /* Opcional: Centra la imagen si es más pequeña que el contenedor */
+    overflow: hidden; /* Asegúrate de ocultar cualquier desbordamiento */
+}
+.img2{
+    width: 50%;
+    height: 80%;
+    align-items: center; /* Opcional: Centra la imagen si es más pequeña que el contenedor */
+    overflow: hidden; /* Asegúrate de ocultar cualquier desbordamiento */
+}
+
+.ventas{
+    background-color: #3a5a7d;
+    width: 100%;
+    height: 20%;
+    display: flex; /* Activa Flexbox */
+    justify-content: center; /* Centra horizontalmente */
+}
+
+.ventas h2{
+    color: #ffffff;
+}
+
+.inferior {
+    margin-top: 10px;
+    width: 100%;
+    height: 50%;
+    background-color: rgba(131, 129, 128, 0.712);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.opciones {
+    margin: 10px;
+    width: 95%;
+    height: 70%; /* Mantén un tamaño fijo para que no se expanda */
+    display: flex;
+    flex-direction: row; /* Asegura que las opciones estén en una sola fila */
+    justify-content: space-around; /* Espacio uniforme entre las opciones */
+    align-items: center; /* Centra verticalmente las opciones */
+    background-color: #ffffff;
+    border: 6px solid #3a5a7d; /* Borde azul */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra alrededor del contenedor */
+    overflow: hidden; /* Previene que el contenido sobresalga */
+}
+
+.opciones > div {
+    flex: 1; /* Cada hijo ocupa el mismo espacio */
+    height: 100%; /* Asegura que ocupen todo el alto del contenedor */
+    display: flex;
+    align-items: center; /* Centra verticalmente el contenido del hijo */
+    justify-content: center; /* Centra horizontalmente el contenido del hijo */
+    background-color: #f8f9fa; /* Fondo claro para las opciones */
+    border: 2px solid #ccc; /* Borde ligero */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    overflow: hidden; /* Evita que el contenido se desborde */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Efecto de hover */
+}
+
+.opciones > div:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el mouse */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3); /* Aumenta la sombra en hover */
+}
+
+.opciones img {
+    max-width: 80%; /* Ajusta el tamaño de la imagen */
+    max-height: 80%; /* Evita que la imagen crezca más del contenedor */
+    object-fit: contain; /* Asegura que la imagen mantenga su proporción sin recortarse */
+    display: block; /* Previene problemas con espacio en línea */
+}
+
+
+.izquierda{
+    height: 100%;
+    width: 50%;
+    display: flex; /* Activa Flexbox */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+}
+
+.informacion{
+    width: 70%;
+    height: 70%;
+    background-color: blue;
+}
+
+.divTitulo{
+    width: 100%;
+    height: 22%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3a5a7d;
+}
+
+.divTitulo h2{
+    color: #ffffff;
+}
+
+.grafica{
+    width: 100%;
+    height: 88%;
+    background-color: #03153a;
+}
+
