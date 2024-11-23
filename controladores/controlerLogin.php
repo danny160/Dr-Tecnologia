@@ -1,4 +1,7 @@
 <?php
+
+session_start(); // Esto inicia una nueva sesión o reanuda la existente
+
 // Incluyendo la conexión a la base de datos
 include('../conexion/conexionBD.php'); 
 
@@ -18,6 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = mysqli_fetch_assoc($result);
         $rolUsuario = $row['rolUsuario'];
         $idUsuario = $row['idUsuario'];
+
+        // Guardar datos en la sesión del usuario
+        $_SESSION['usuario_id'] = $row['idUsuario'];
+        $_SESSION['rol_usuario'] = $row['rolUsuario'];
 
         // Consulta para verificar el estado de la cuenta
         $estadoQuery = "SELECT estadoCuenta FROM usuarios WHERE idUsuario = '$idUsuario'";

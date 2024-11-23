@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// Verificar si el usuario está autenticado
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: login.php'); // Redirigir al login si no está autenticado
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -17,6 +27,8 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../estilos/styleListadoinventario.css">
+
+    <script src="../javaScrip/estadoUsuarios.js"></script>
 </head>
 
 <body>

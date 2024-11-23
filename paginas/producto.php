@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// Verificar si el usuario está autenticado
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: login.php'); // Redirigir al login si no está autenticado
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -10,6 +20,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <script src="../javaScrip/estadoUsuarios.js"></script>
 </head>
 
 <body>
@@ -132,7 +144,6 @@
                 </div>
             </div>
         </div>
-
 
     </div>
 
